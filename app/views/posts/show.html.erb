@@ -1,7 +1,7 @@
 <div class="post_container">
   <div class="post_header">
     <h2><%= @post.title %></h2>
-    <h4>By <%= @post.author %> - <%= link_to "Edit Post", edit_post_path %></h4>
+    <p class="byline">Posted by <%= @post.user.username %> <span><%= time_ago_in_words(@post.created_at) %></span> ago - <%= link_to "Edit Post", edit_post_path %></p>
   </div>
 
   <div class="post_body">

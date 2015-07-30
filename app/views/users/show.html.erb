@@ -1,5 +1,10 @@
 <h2><%= @user.username %>'s Profile </h2>
+<p>From <%= @user.location %></p>
+<p><%= @user.created_at.strftime("Joined on %b %d, %Y") %></p>
+<p>User Type: <%= @user.role %></p>
+<%= image_tag(@user.photo_url) %>
 
+<p>List of Comments:</p>
 <% @comments.each do |comment| %>
   <ul>
     <li>

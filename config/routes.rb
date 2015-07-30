@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
   root to: 'posts#index'
 
-  resources :posts, :users do
+  resources :posts do
     resources :comments
   end
+  
+  resources :users
 
   get '/signin', to: 'users#signin_prompt'
   post '/signin', to: 'users#signin'

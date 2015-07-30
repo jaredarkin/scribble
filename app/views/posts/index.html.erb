@@ -2,7 +2,8 @@
   <div class="post_container">
 
     <div class="post_header">
-      <h2><%= link_to post.title, post %></h2><h4> by <%= post.author %><h4>
+      <h2><%= link_to post.title, post %></h2>
+      <p class="byline">Posted by <%= post.user.username %> <span><%= time_ago_in_words(post.created_at) %></span> ago</p>
     </div>
     <div class="post_body">
       <p><%= post.body %></p>

@@ -63,6 +63,7 @@ class UsersController < ApplicationController
     }
     session[:is_signed_in] = true
     session[:user] = User.find_by(username: params[:username])
+    current_user = session[:user]
     redirect_to posts_path
   end
 
