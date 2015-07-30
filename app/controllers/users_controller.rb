@@ -22,7 +22,8 @@ class UsersController < ApplicationController
           username: params[:username],
           password_digest: BCrypt::Password.create(params[:password])
         )
-          message = "Your account has been created!"
+          message = "Your account has been created and you're signed in!"
+          sign_in
         else
           # ask if this message is useless in this particular context - will either create user or say wrong password
           message = "Your account couldn't be created. Did you enter a unique username and password?"
@@ -32,20 +33,16 @@ class UsersController < ApplicationController
         decoded_hash = BCrypt::Password.new(User.find_by(username: params[:username]).password_digest)
         if decoded_hash.is_password?(params[:password]) == false
           message = "Your password's wrong!"
+          redirect_to :back
         else
           message = "You're signed in, #{params[:username]}! :)"
-          cookies[:username] = {
-            value: params[:username],
-            expires: 100.years.from_now
-          }
-          session[:is_signed_in] = true
-          session[:user] = User.find_by(username: params[:username])
+          sign_in
         end
       end
     end
     puts "-" * 50
     flash[:sign_in_message] = message
-    redirect_to :back
+
   end
 
   def signin_prompt
@@ -55,6 +52,18 @@ class UsersController < ApplicationController
   def signout
     reset_session
     redirect_to root_url
+  end
+
+  private
+
+  def sign_in
+    cookies[:username] = {
+      value: params[:username],
+      expires: 100.years.from_now
+    }
+    session[:is_signed_in] = true
+    session[:user] = User.find_by(username: params[:username])
+    redirect_to posts_path
   end
 
 end

@@ -8,18 +8,18 @@
 </head>
 <body>
   <header>
-    <h1>Scribble</h1>
+    <h1><%= link_to "Scribble", posts_path %></h1>
     <nav>
 
-      <%= link_to "Home", posts_path %>
-      <%= link_to "New Post", new_post_path %>
+      <%= link_to "Home", posts_path, class: "nav_link" %>
+      <%= link_to "New Post", new_post_path, class: "nav_link" %>
       <% if session[:is_signed_in] %>
-        <%= link_to "Your Profile", user_path(session[:user]["id"]) %>
+        <%= link_to "Your Profile", user_path(session[:user]["id"]), class: "nav_link" %>
       <% end %>
       <% if session[:is_signed_in] %>
-        <%= link_to "Sign Out: #{session[:user]["username"]}", signout_path %>
+        <%= link_to "Sign Out: #{session[:user]["username"]}", signout_path, class: "nav_link" %>
       <% else %>
-        <%= link_to "Sign In", signin_path %>
+        <%= link_to "Sign In", signin_path, class: "nav_link" %>
       <% end %>
     </nav>
   </header>
