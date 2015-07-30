@@ -1,2 +1,11 @@
 <h2><%= @user.username %>'s Profile </h2>
-<!-- add users comments, date joined, profile pic, location -->
+
+<% @comments.each do |comment| %>
+  <ul>
+    <li>
+      Commented "<%= comment.body %>" on <%= link_to @posts.find(comment.post).title, post_path(@posts.find(comment.post)) %>
+    </li>
+  </ul>
+<% end %>
+
+<!-- add users date joined, profile pic, location -->
