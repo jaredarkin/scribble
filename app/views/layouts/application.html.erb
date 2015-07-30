@@ -10,10 +10,17 @@
   <header>
     <h1>Scribble</h1>
     <nav>
+
       <%= link_to "Home", posts_path %>
       <%= link_to "New Post", new_post_path %>
-      <%= link_to "Your Profile", posts_path %>
-      <%= link_to "Sign In", posts_path %>
+      <% if session[:is_signed_in] %>
+        <%= link_to "Your Profile", user_path(session[:user]["id"]) %>
+      <% end %>
+      <% if session[:is_signed_in] %>
+        <%= link_to "Sign Out: #{session[:user]["username"]}", signout_path %>
+      <% else %>
+        <%= link_to "Sign In", signin_path %>
+      <% end %>
     </nav>
   </header>
 

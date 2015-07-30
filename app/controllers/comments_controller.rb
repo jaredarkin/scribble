@@ -10,8 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = @post.comments.new(comment_params)
-    @comment.save
+    @comment = @post.comments.create!(comment_params.merge({user_id: session[:user]["id"]}))
     redirect_to post_path(@post)
   end
 
