@@ -20,7 +20,7 @@ rick = Post.create(title: "A Rick in Time", photo_url: "http:www.placebear.com/3
 thrones = Post.create(title: "HardHome", photo_url: "http:www.placebear.com/300/300", user: joe, body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauri.")
 
 
-pbj.comments.create(body: "I love Bacon", user: sally)
+# pbj.comments.create(body: "I love Bacon", user: sally)
 bluth.comments.create(body: "I think I'm touching something hot!", user: bob)
 bluth.comments.create(body: "Her??", user: joe)
 rick.comments.create(body: "Jerry is a putz", user: joe)
