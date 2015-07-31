@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @comments = @user.comments.all
     @posts = Post.all
+    @user_posts = @user.posts.all
   end
 
   def signin

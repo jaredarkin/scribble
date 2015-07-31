@@ -1,33 +1,36 @@
 <div class="post_container">
+
   <div class="post_header">
     <h2><%= @post.title %></h2>
     <p class="byline">Posted by <%= @post.user.username %> <span><%= time_ago_in_words(@post.created_at) %></span> ago - <%= link_to "Edit Post", edit_post_path %></p>
   </div>
-
+  <%= image_tag @post.photo_url, class: "post_image" %>
   <div class="post_body">
     <%= @post.body %>
   </div>
+
 </div>
-
 <div class="comment_container">
-  <ul>
-    <% @comments.each do |comment| %>
+  <div class="comment_list">
+    <ul>
+      <% @comments.each do |comment| %>
 
-        <li>
-          <%= comment.body %> by <%= link_to comment.user.username, user_path(comment.user.id) %>
-          <%= link_to "Edit Comment", edit_post_comment_path(@post, comment) %>
-        </li>
+          <li>
+            <%= link_to comment.user.username, user_path(comment.user.id) %>: <%= comment.body %> <span class="comment_timestamp"><%= time_ago_in_words(comment.created_at) %> ago</span>
+            <%= link_to "Edit Comment", edit_post_comment_path(@post, comment), class: "edit_link" %>
+          </li>
 
-    <% end %>
-
+      <% end %>
+    </ul>
+  </div>
+  <div class="comment_form">
     <%= form_for [@post, Comment.new] do |f| %>
-      <%= f.label :body, "Add a New Comment" %>
+      <%= f.label :body, "New Comment" %>
       <%= f.text_area :body %>
 
       <%= f.submit %>
     <% end %>
-
-  </ul>
+  </div>
 </div> <!-- end of comment container div -->
 
 <!-- <%= link_to "Add Comment", new_post_comment_path(@post) %> -->

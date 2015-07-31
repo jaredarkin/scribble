@@ -1,16 +1,40 @@
-<h2><%= @user.username %>'s Profile </h2>
-<p>From <%= @user.location %></p>
-<p><%= @user.created_at.strftime("Joined on %b %d, %Y") %></p>
-<p>User Type: <%= @user.role %></p>
-<%= image_tag(@user.photo_url) %>
+<div class="profile_container">
+  <div class="profile_info">
+    <%= image_tag @user.photo_url, class: "profile_image", size: "200x200" %>
+    <h2><%= @user.username %>'s Profile </h2>
+    <p>From: <span class="profile_text"><%= @user.location %></span></p>
+    <p>Joined on: <span class="profile_text"><%= @user.created_at.strftime("%b %d, %Y") %></span></p>
+    <p>User Type: <span class="profile_text"><%= @user.role %></span></p>
+  </div>
 
-<p>List of Comments:</p>
-<% @comments.each do |comment| %>
-  <ul>
-    <li>
-      Commented "<%= comment.body %>" on <%= link_to @posts.find(comment.post).title, post_path(@posts.find(comment.post)) %>
-    </li>
-  </ul>
-<% end %>
+  <% if @user_posts.empty? %>
+    <p></p>
+  <% else %>
+    <div class="profile_posts">
+      <p>Posts:</p>
+      <% @user_posts.each do |post| %>
+        <ul>
+          <li>
+            <%= link_to post.title, post %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
 
-<!-- add users date joined, profile pic, location -->
+  <% if @comments.empty? %>
+    <p></p>
+  <% else %>
+    <div class="profile_comments">
+      <p>Comments:</p>
+      <% @comments.each do |comment| %>
+        <ul>
+          <li>
+            "<%= comment.body %>" on <%= link_to @posts.find(comment.post).title, post_path(@posts.find(comment.post)) %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>  
+
+</div>

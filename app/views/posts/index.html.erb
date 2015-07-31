@@ -3,10 +3,13 @@
 
     <div class="post_header">
       <h2><%= link_to post.title, post %></h2>
-      <p class="byline">Posted by <%= post.user.username %> <span><%= time_ago_in_words(post.created_at) %></span> ago</p>
+      <span class="byline">Posted by <%= post.user.username %> <span><%= time_ago_in_words(post.created_at) %></span> ago</span>
     </div>
+      <%= image_tag post.photo_url, class: "post_image" %>
     <div class="post_body">
       <p><%= post.body %></p>
+    </div>
+    <div class="index_spacer">
     </div>
 
   </div>

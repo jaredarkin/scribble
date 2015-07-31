@@ -14,8 +14,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.save
+    @post = Post.create!(post_params.merge({user_id: session[:user]["id"]}))
     redirect_to post_path(@post)
   end
 
@@ -38,7 +37,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :author, :body)
+    params.require(:post).permit(:title, :photo_url, :body)
   end
 
 

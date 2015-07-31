@@ -1,7 +1,11 @@
-<h2>Edit Post</h2>
+<div class="post_form" >
 
-<%= render "form" %>
+  <h2>Edit Post</h2>
 
-<%= form_for @post, method: :delete do |f| %>
-  <%= f.submit "Delete Post" %>
-<% end %>
+  <%= render "form" %>
+
+  <%= form_for @post, method: :delete do |f| %>
+    <%= f.submit "Delete Post" %>
+  <% end %>
+
+</div>
