@@ -23,6 +23,8 @@
       <% end %>
     </ul>
   </div>
+
+  <!-- could you use the comment form partial here? -->
   <div class="comment_form">
     <%= form_for [@post, Comment.new] do |f| %>
       <%= f.label :body, "New Comment" %>
