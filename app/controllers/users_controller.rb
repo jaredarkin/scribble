@@ -11,6 +11,9 @@ class UsersController < ApplicationController
     @user_posts = @user.posts.all
   end
 
+  # while this works, and is clever, I found it a bit confusing from a UX perspective...
+  # I couldn't find a signup page, and was confused that I could just create a user
+  # by 'signing in'... maybe at least indicate as much on the sign in page?
   def signin
     if params[:username].strip == ""
       message = "You forgot to enter a username!"
@@ -57,6 +60,7 @@ class UsersController < ApplicationController
 
   private
 
+  # nice use of a method to extract commonality
   def sign_in
     cookies[:username] = {
       value: params[:username],
